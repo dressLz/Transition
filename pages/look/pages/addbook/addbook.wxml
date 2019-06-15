@@ -1,0 +1,42 @@
+<skeleton selector="skeleton" loading="spin" bgcolor="#FFF" wx:if="{{showSkeleton}}"></skeleton>
+<import src="../../../../template/load.wxml" />
+<template is="loads" wx:if="{{loadtemp}}"></template>
+<view class="add-page" style="{{subjectshow || addbookM?'overflow-y:hidden;':'overflow-y:auto'}}">
+  <view class="header-seach">
+    <view class="seach-item" wx:for="{{seachList}}" wx:key="{{index}}" catchtap='seachcondition' data-index="{{index}}">
+      <text>{{item.name}}</text>
+      <view class="{{item.isshow?'triangle_border_up':'triangle_border_down'}} icon"></view>
+    </view>
+    <!-- 选择列表 -->
+    <view class="seach-bsolute" wx:if="{{subjectshow}}">
+      <view class="bsolute-item {{item.check?'active':''}}" wx:for="{{seachsub[seachIndex]}}" wx:key="key" catchtap='selectedseach' data-index="{{index}}" data-id="{{item.Id}}">{{item.Name}}</view>
+    </view>
+  </view>
+  <view class="mask-page" wx:if="{{subjectshow}}"></view>
+  <!-- content -->
+  <view class="content skeleton">
+    <view class="content-item skeleton-rect" wx:for="{{bookList}}" animation="{{animation}}" wx:key="key" style="{{(index+1)%3==0?'margin-right:0;':'margin-right:30rpx;'}}" catchtap='infobook' data-id="{{item.id}}" data-subjectid="{{item.subjectId}}" data-index="{{index}}">
+      <image wx:if="{{item.cover}}" src="{{item.cover}}" class='coverImg' mode='aspectFill'></image>
+      <view class="before" wx:if="{{item.inShelf}}" style="background:rgba(0,0,0,0.6)">已添加</view>
+      <view class="before" wx:else catchtap='addbook' data-bookid="{{item.id}}">添加</view>
+    </view>
+  </view>
+  <view class="mask" wx:if="{{addbookM}}">
+    <view class="box">
+      <view class="moudel">
+        <view class="thing">确认添加所选图书？</view>
+        <view class="box-btn">
+          <view class="operating" catchtap='cancelClick'>取消</view>
+          <view class="operating" catchtap='addClick'>确认</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- contact -->
+  <view class="contact" wx:if="{{!showSkeleton}}">找不到想要的书？
+    <text class="text">告诉我们</text> </view>
+</view>
+<!-- tips -->
+<view class="tips" wx:if="{{tips}}">
+  <view class="tips-box">{{tipstext}}</view>
+</view>

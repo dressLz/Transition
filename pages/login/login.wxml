@@ -1,0 +1,13 @@
+<import src="../../template/load.wxml" />
+<template is="loads" wx:if="{{loadtemp}}"></template>
+<view class="nav" style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px;">
+  <view class="navtext" style="height:{{titleBarHeight}}px;line-height:{{titleBarHeight}}px;">淘知学堂点读书</view>
+</view>
+<view class="page-login" style="padding-top:{{titleBarHeight+statusBarHeight}}px;">
+  <view>
+    <view class="logo-box">
+      <image src="https://open.oss.taozhi.cn/audiobook/asset/index/logotext.png" class="logoImg"></image>
+    </view>
+    <button wx:if="{{btn}}" open-type="getUserInfo" bindgetuserinfo="login" class="getUserInfo">一键登录</button>
+  </view>
+</view>

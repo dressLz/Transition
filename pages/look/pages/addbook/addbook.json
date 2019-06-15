@@ -1,0 +1,5 @@
+{ "navigationBarTitleText": "选择图书",
+  "usingComponents": {
+    "skeleton": "/component/skeleton/skeleton"
+  }
+}

@@ -1,0 +1,171 @@
+<import src="../../template/load.wxml" />
+<template is="loads" wx:if="{{loadtemp}}"></template>
+<skeleton selector="skeleton" loading="spin" bgcolor="#FFF" wx:if="{{showSkeleton}}"></skeleton>
+<view class="translation-box" wx:if="{{subjectId==3 && audioContentTrans.length>0 && topBtn.startaudio && translation}}">
+  <text class="translation">{{audioContentTrans[range.index]}}</text>
+</view>
+<view class="read-page skeleton">
+  <!-- 顶部控制器 -->
+  <view class="read-header skeleton-rect {{top_show?'activeTop':''}}" wx:if="{{bottom_show && !topBtn.startaudio}}">
+    <view class="header-left">
+      <view class="btn">
+        <image class="icon" wx:if="https://open.oss.taozhi.cn/audiobook/asset/read/index.png" src="https://open.oss.taozhi.cn/audiobook/asset/read/index.png" catchtap='previouspage'></image>
+        <view>首页</view>
+      </view>
+      <view class="btn">
+        <image class="icon" wx:if="https://open.oss.taozhi.cn/audiobook/asset/read/mulu.png" src="https://open.oss.taozhi.cn/audiobook/asset/read/mulu.png" catchtap='slideleft'></image>
+        <view>目录</view>
+      </view>
+      <view class="btn">
+        <image class="icon" wx:if="https://open.oss.taozhi.cn/audiobook/asset/read/lianbo.png" src="https://open.oss.taozhi.cn/audiobook/asset/read/{{topBtn.continuous?'lianbo-o':'lianbo'}}.png" catchtap='continuous'></image>
+        <view>连播</view>
+      </view>
+      <view class="btn">
+        <image class="icon" wx:if="https://open.oss.taozhi.cn/audiobook/asset/read/fudu.png" src="https://open.oss.taozhi.cn/audiobook/asset/read/{{topBtn.repeat?'fudu-o':'fudu'}}.png" catchtap='repeatbtn'></image>
+        <view>复读</view>
+      </view>
+      <view class="btn">
+        <image class="icon" wx:if="https://open.oss.taozhi.cn/audiobook/asset/read/dandu.png" src="https://open.oss.taozhi.cn/audiobook/asset/read/{{topBtn.sreading?'dandu-o':'dandu'}}.png" catchtap='sreading'></image>
+        <view>单读</view>
+      </view>
+    </view>
+    <view>
+      <view class="header-right" wx:if="{{subjectId==3}}">
+        <image class="icon" wx:if="https://open.oss.taozhi.cn/audiobook/asset/read/fanyi.png" src="https://open.oss.taozhi.cn/audiobook/asset/read/{{translation?'fanyi-o':'fanyi'}}.png" catchtap='translation'></image>
+        <view>翻译</view>
+      </view>
+      <!-- <view class="header-right">
+        <image class="icon" wx:if="https://open.oss.taozhi.cn/audiobook/asset/read/yusu.png" src="https://open.oss.taozhi.cn/audiobook/asset/read/{{topBtn.speechrate?'yusu':'yusu'}}.png" catchtap='speechrate'></image>
+        <view>语速</view>
+      </view> -->
+    </view>
+  </view>
+  <!-- <view class="position {{isshow?'':'positionop'}}">
+    <image src="{{bookset[current]}}" class="img"></image>
+  </view> -->
+  <view class="read-content skeleton-rect" catchtap='showControl'>
+    <swiper class="swiper-item" bindchange="swiperchang" current='{{newcurrent}}' style="{{isshow?'opacity: 1':'opacity: 0'}}">
+      <swiper-item class="swiper-item-box" wx:for="{{newlist[newindex]}}" wx:key="id" catchtouchmove="{{(topBtn.startaudio)?'forbidMove':''}}" data-index="{{movable.scaleis}}" bindtouchstart="touchStarts" bindtouchend="touchEnds">
+        <movable-area style="height: 100vh; width: 100vw;">
+          <movable-view direction="all" scale scale-max="2" scale-min="1" style="height: 100vh; width: 100vw;" bindscale="bindscaleswiper" bindchange="bindchangeswiper">
+            <view class="swiper-item-box-view">
+              <block wx:if="{{bottom_show && !topBtn.repeat && !topBtn.continuous && !topBtn.sreading && !alternative}}">
+                <view wx:for="{{range.list[current]}}" wx:key='id' class="constituency {{index==sreadIndex?'':'visihide'}}" style="width:{{item.positionWidth}}%;height:{{item.positionHeight}}%;top:{{item.positionTop}}%;left:{{item.positionLeft}}%;" catchtap='rangeclick'
+                  data-index="{{index}}" data-type="sreading">
+                </view>
+              </block>
+              <block wx:if="{{topBtn.startaudio}}">
+                <view wx:for="{{range.list[current]}}" wx:key='id' wx:if="{{index==range.index}}" class="constituency {{(index==range.index )?'':'visihide'}}" style="width:{{item.positionWidth}}%;height:{{item.positionHeight}}%;top:{{item.positionTop}}%;left:{{item.positionLeft}}%;">
+                </view>
+              </block>
+              <!-- 连播 -->
+              <block wx:if="{{topBtn.continuous && !topBtn.startaudio}}">
+                <view wx:for="{{range.list[current]}}" wx:key='id' wx:if="{{index==range.index}}" class="constituency {{(index==range.index )?'':'visihide'}}" style="width:{{item.positionWidth}}%;height:{{item.positionHeight}}%;top:{{item.positionTop}}%;left:{{item.positionLeft}}%;">
+                </view>
+              </block>
+              <!-- 复读 -->
+              <block wx:if="{{topBtn.repeat && !topBtn.startaudio}}">
+                <view wx:for="{{range.list[current]}}" wx:key='id' class="constituency {{((index==repeat.startindex && repeat.startcurrent==current) || index==repeat.endindex && repeat.endcurrent==current)?'':'visihide'}}" style="width:{{item.positionWidth}}%;height:{{item.positionHeight}}%;top:{{item.positionTop}}%;left:{{item.positionLeft}}%;"
+                  catchtap='rangeclick' data-index="{{index}}">
+                </view>
+              </block>
+              <!-- 单读 -->
+              <!-- !topBtn.sreading && !topBtn.startaudio && -->
+              <block wx:if="{{ !topBtn.repeat && !topBtn.continuous && !bottom_show}}">
+                <view wx:for="{{range.list[current]}}" wx:key='id' class="constituencys" style="width:{{item.positionWidth}}%;height:{{item.positionHeight}}%;top:{{item.positionTop}}%;left:{{item.positionLeft}}%;" catchtap='alternative' data-index="{{index}}" data-type="sreading">
+                </view>
+              </block>
+              <block wx:if="{{topBtn.sreading && !topBtn.startaudio}}">
+                <view wx:for="{{range.list[current]}}" wx:key='id' class="constituency {{index==sreadIndex?'':'visihide'}}" style="width:{{item.positionWidth}}%;height:{{item.positionHeight}}%;top:{{item.positionTop}}%;left:{{item.positionLeft}}%;" catchtap='rangeclick'
+                  data-index="{{index}}" data-type="sreading">
+                </view>
+              </block>
+              <block>
+                <image wx:if="{{item.imgUrl}}" src="{{item.imgUrl}}?x-oss-process=style/normal" class="book-sequence" mode="widthFix" lazy-load="{{truebtn}}" />
+              </block>
+            </view>
+          </movable-view>
+        </movable-area>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 底部切换栏目 -->
+  <scroll-view class="bottom-scroll" scroll-x="{{true}}" wx:if="{{bottom_show && !topBtn.startaudio}}" scroll-left="{{scrollleft}}">
+    <block wx:for="{{bookset}}" wx:key="id">
+      <view class="bottom-scroll-item {{index==current?'active':''}}" catchtap='swipertab' data-index="{{index}}">
+        <image class="scroll-item-img" wx:if="{{item.imgUrl}}" src="{{item.imgUrl}}?x-oss-process=style/book-cover" mode='aspectFill'></image>
+        <view class="pageindex">{{index+1}}</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<!-- 语速 -->
+<block wx:if="{{topBtn.speechrate}}">
+  <view class="speechrate" catchtap='speechrateMask'>
+    <view class="speechrate-box">
+      <view class="column">设置语速</view>
+      <view class="progress-box" bindtouchstart='controlStart' bindtouchmove='controlMove' bindtouchend='controlEnd'>
+        <progress percent="{{progress.val}}" class="progress" stroke-width="4" activeColor="#00A2FF" backgroundColor='rgba(212,212,212,1)' />
+        <view class="control" style="left:{{progress.val-3}}%;">
+          <view class="control-box">
+            <view class="radius"></view>
+            <text class="sum-box">
+              {{speechval}}x
+            </text>
+          </view>
+        </view>
+        <view class="Identification">
+          <text class="{{progress.speed?'textColor':''}}">慢</text>
+          <text class="{{!progress.speed?'textColor':''}}">快</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+<!-- 复读提示选择 -->
+<view class="repeatTips" wx:if="{{!topBtn.startaudio && topBtn.repeat}}" catchtap='{{repeat.tiptext=="播放"?"repeatTips":""}}'>{{repeat.tiptext}}</view>
+<!-- 遮罩 -->
+<view class="mask" wx:if="{{leftul_show}}" catchtap='maskmouver'>
+</view>
+<!-- 目录 -->
+<view class="leftul-box {{leftul_show?'slide':''}}" style="left:{{leftul}}px;">
+  <view class="headcover">
+    <view class="contcover">
+      <image wx:if="{{cover}}" src="{{cover}}" class="bookcover"></image>
+      <view class="text">
+        <view class="theLord">{{subject}}</view>
+        <view class="vice">{{bookinfo}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="ul">
+    <block  wx:for="{{menulist}}" wx:key="id" wx:for-item="item">
+      <view class="li-item"  data-seq="{{item.pageSequence}}" catchtap='listnav' data-index="{{index}}">
+        <text>{{item.title}}</text>
+        <image src="https://open.oss.taozhi.cn/audiobook/asset/read/{{menucheckIn==index?'shangla':'xiala'}}.png" class="menu-img"></image>
+      </view>
+      <block wx:if="{{menufather==index}}">
+        <block wx:for="{{item.childMenus}}" wx:for-index="childindex" wx:for-item="childitems" wx:key="id">
+          <view data-indexs="{{menulistIndex+'==='+childindex}}" class="{{(menulistIndex == childindex && menuchekcfather == index)?'color':''}} li-item li-item-child"  data-seq="{{childitems.pageSequence}}" catchtap='listnavbackto' data-fatherin="{{index}}" data-index="{{childindex}}">
+            <text>{{childitems.title}}</text>
+            <text class="{{(menulistIndex == childindex && menuchekcfather == index)?'color':''}} text">{{childitems.pageSequence}}</text>
+          </view>
+        </block>
+      </block>
+    </block>
+  </view> -->
+  <view class="ul">
+    <block wx:for="{{menulist}}" wx:key="id">
+      <mytree model='{{ item }}' menulistIndex="{{menulistIndex}}" bind:tapitem='listnavbackto'></mytree>
+    </block>
+  </view>
+</view>
+<!-- btn -->
+<view class="stopit-box">
+  <view class="stopit" wx:if="{{topBtn.startaudio && is_loop}}" catchtap='prohibitever'>
+    <image src="https://open.oss.taozhi.cn/audiobook/asset/read/tingzhi.png" class="stopit-img"></image>
+  </view>
+  <view class="stopit stopit-suspend" wx:if="{{topBtn.continuous && topBtn.startaudio}}" catchtap='timeout'>
+    <image src="https://open.oss.taozhi.cn/audiobook/asset/read/{{timeout?'zanting':'bot-bofang'}}.png" class="stopit-img"></image>
+  </view>
+</view>

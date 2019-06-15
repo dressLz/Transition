@@ -1,0 +1,6 @@
+{"navigationBarTitleText": "点读",
+  "usingComponents": {
+    "skeleton": "/component/skeleton/skeleton",
+    "mytree": "../../component/mytree/mytree"
+  }
+}

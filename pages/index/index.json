@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "淘知点读",
+  "usingComponents": {
+    "skeleton": "/component/skeleton/skeleton"
+  },
+  "navigationStyle":"custom",
+  "disableScroll": true
+}

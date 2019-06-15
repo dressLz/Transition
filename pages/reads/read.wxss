@@ -1,0 +1,547 @@
+/* pages/read/read.wxss */
+
+.read-page {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.read-page .read-header {
+  width: 100%;
+  height: 134rpx;
+  box-sizing: border-box;
+  background: rgba(232, 232, 232, 0.92);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 26rpx 0 17rpx;
+  border-bottom: 0.5rpx solid rgba(234, 234, 234, 1);
+  position: fixed;
+  top: 0rpx;
+  left: 0;
+  animation: mymove 0.6s infinite;
+  -webkit-animation: mymove 0.6s infinite;
+  animation-iteration-count: 1;
+  z-index: 300;
+}
+
+@keyframes mymove {
+  from {
+    top: -134rpx;
+  }
+
+  to {
+    top: 0rpx;
+  }
+}
+
+@-webkit-keyframes mymove {
+  from {
+    top: -134rpx;
+  }
+
+  to {
+    top: 0rpx;
+  }
+}
+
+/* 翻译 */
+
+.translation-box {
+  position: fixed;
+  width: 100%;
+  bottom: 190rpx;
+  z-index: 1000;
+  text-align: center;
+}
+
+.translation-box .translation {
+  line-height: 72rpx;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12rpx;
+  padding: 23rpx 35rpx;
+  font-size: 26rpx;
+  font-family: PingFang-SC-Regular;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+}
+
+.read-header .header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-left .btn .icon {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.slide {
+  animation: slide 1s infinite;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide {
+  from {
+    left: -654rpx;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+.header-left .btn {
+  font-size: 22rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(90, 90, 90, 1);
+  text-align: center;
+  margin-right: 40rpx;
+}
+
+.header-left .btn:last-child {
+  margin-right: 0;
+}
+
+.header-right {
+  font-size: 22rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(90, 90, 90, 1);
+  text-align: center;
+  display: inline-block;
+}
+
+.header-right:nth-child(1) {
+  margin-right: 40rpx;
+}
+
+.header-right .icon {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+/* 底部滑块 */
+
+.bottom-scroll {
+  width: 100%;
+  height: 140rpx;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  white-space: nowrap;
+  padding: 0 40rpx;
+  -webkit-animation: bottomKey 0.6s infinite;
+  animation: bottomKey 0.6s infinite;
+  animation-iteration-count: 1;
+}
+
+@keyframes bottomKey {
+  from {
+    bottom: -140rpx;
+  }
+
+  top {
+    bottom: 0rpx;
+  }
+}
+
+@-webkit-keyframes bottomKey {
+  from {
+    bottom: -140rpx;
+  }
+
+  top {
+    bottom: 0rpx;
+  }
+}
+
+.bottom-scroll .scroll-item-img {
+  width: 100%;
+  height: 100%;
+}
+
+.bottom-scroll .bottom-scroll-item {
+  width: 92rpx;
+  height: 132rpx;
+  background: #f0f0f0;
+  margin-left: 8rpx;
+  display: inline-block;
+  position: relative;
+  margin-top: 4rpx;
+}
+
+.bottom-scroll .pageindex {
+  position: absolute;
+  width: 92rpx;
+  height: 28rpx;
+  background: rgba(255, 255, 255, 0.7);
+  bottom: 0;
+  left: 0;
+  font-size: 20rpx;
+  font-family: PingFang-SC-Heavy;
+  font-weight: 800;
+  color: rgba(51, 51, 51, 1);
+  text-align: center;
+  line-height: 28rpx;
+}
+
+.bottom-scroll .active {
+  border: 4rpx solid rgba(249, 62, 62, 1);
+  border-radius: 6px;
+  margin-top: 0;
+}
+
+.mask {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  box-sizing: border-box;
+}
+
+/* 左侧目录 */
+
+.leftul-box {
+  width: 640rpx;
+  background: #fff;
+  height: 100vh;
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  z-index: 300;
+}
+
+.leftul-box .headcover {
+  width: 640rpx;
+  height: 350rpx;
+  background: url('https://open.oss.taozhi.cn/audiobook/asset/read/toubu.png');
+  box-sizing: border-box;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border-bottom: 1px dashed rgba(213, 213, 214, 1);
+  padding-left: 40rpx;
+  padding-top: 142rpx;
+}
+
+.contcover {
+  display: flex;
+  align-items: center;
+}
+
+.contcover .bookcover {
+  width: 120rpx;
+  height: 168rpx;
+  background: #eee;
+  box-shadow: 0px 10px 14px 0px rgba(0, 0, 0, 0.15);
+  margin-right: 30rpx;
+}
+
+.contcover .theLord {
+  font-size: 34rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  margin-bottom: 23rpx;
+}
+
+.contcover .vice {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(169, 169, 169, 1);
+}
+
+.ul .li-item {
+  width: 100%;
+  height: 100rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40rpx 0 30rpx;
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(90, 90, 90, 1);
+  border-bottom: 0.5rpx solid rgba(213, 213, 214, 0.5);
+}
+.ul .li-item-child{
+  padding-left:60rpx;
+}
+.ul .li-item .text {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(169, 169, 169, 1);
+}
+
+/* 语速 */
+
+.speechrate {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.speechrate .speechrate-box {
+  width: 480rpx;
+  height: 180rpx;
+  background: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 24rpx 19rpx;
+}
+
+.column {
+  font-size: 32rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 1);
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.progress-box {
+  position: relative;
+}
+
+.progress-box .control-box {
+  width: 30rpx;
+  height: 30rpx;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 1);
+  border: 2rpx solid rgba(0, 165, 255, 1);
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.progress-box .control {
+  position: absolute;
+  top: -13rpx;
+}
+
+.progress-box .control .radius {
+  width: 14rpx;
+  height: 14rpx;
+  background: rgba(0, 165, 255, 1);
+  border-radius: 50%;
+}
+
+.progress-box .sum-box {
+  position: absolute;
+  font-size: 28rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(0, 162, 255, 1);
+  line-height: 22rpx;
+  bottom: -42rpx;
+}
+
+.Identification {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  margin-top: 31rpx;
+}
+
+.textColor {
+  color: rgba(249, 62, 62, 1);
+}
+
+/* 内容 */
+
+.read-content {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.read-content .book-sequence {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-item {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.swiper-item-box {
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y:auto;
+}
+
+.swiper-item-box, .swiper-item-box-view {
+  width: 100%;
+  position: relative;
+}
+
+.swiper-item-box .constituency {
+  position: absolute;
+  border: 2px solid rgba(241, 139, 63, 1);
+  background: rgba(204, 111, 42, 0.15);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+.swiper-item-box .constituencys {
+  position: absolute;
+  /* background: rgba(204, 111, 42, 0.15); */
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.read-content .book-filp {
+  animation: flipbook 3s infinite;
+  animation-iteration-count: 1;
+}
+
+.read-content .book-filp-up {
+  animation: flipbooks 3s infinite;
+  animation-iteration-count: 1;
+}
+
+@keyframes flipbook {
+  from {
+    transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg);
+    transform-origin: 0 0;
+  }
+
+  to {
+    transform: rotateZ(0deg) rotateY(180deg) rotateX(0deg);
+    transform-origin: 0 0;
+  }
+}
+
+@keyframes flipbooks {
+  from {
+    transform: rotateZ(0deg) rotateY(180deg) rotateX(0deg);
+    transform-origin: 0 0;
+  }
+
+  to {
+    transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg);
+    transform-origin: 0 0;
+  }
+}
+
+/* 复读 */
+
+.repeatTips {
+  width: 100%;
+  height: 100rpx;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.swiper-item-box .visihide {
+  /* opacity:0 */
+  border: 1px dashed rgba(241, 139, 63, 1);
+  background: none;
+  border-radius: 8px;
+  animation: run 1s infinite;
+}
+
+.swiper-item-box .nocheck {
+  opacity: 0;
+}
+
+@keyframes run {
+  from {
+  }
+
+  to {
+  }
+}
+
+.color {
+  color: rgba(0, 162, 255, 1) !important;
+}
+@import "../../template/load.wxss";
+
+.occupy {
+  visibility: hidden;
+}
+
+.stopit-box {
+  position: fixed;
+  bottom: 28rpx;
+  right: 40rpx;
+  display: flex;
+}
+
+.stopit {
+  width: 84rpx;
+  height: 84rpx;
+  background: linear-gradient(90deg, rgba(0, 188, 255, 1), rgba(0, 162, 255, 1));
+  box-shadow: 0px 10px 14px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stopit .stopit-img {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.stopit-suspend {
+  margin-left: 40rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 10px 14px 0px rgba(0, 0, 0, 0.15);
+}
+
+.menu-img{
+  width: 23rpx;
+  height: 23rpx;
+}
+/* .position{
+  position: fixed;
+  width: 100%;
+  height:100vh;
+  z-index:9000;
+}
+.positionop{
+  opacity: 0;
+  z-index:-100;
+}
+.position .img{
+  width: 100%;
+  height:100vh;
+} */

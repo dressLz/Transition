@@ -1,0 +1,7 @@
+<template name="loads">
+  <view class="spinner">
+    <view class="bounce1 bounce"></view>
+    <view class="bounce2 bounce"></view>
+    <view class="bounce3 bounce"></view>
+  </view>
+</template>

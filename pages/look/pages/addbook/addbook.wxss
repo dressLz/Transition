@@ -1,0 +1,96 @@
+.add-page{
+  background:linear-gradient(160deg,rgba(242,250,253,1),rgba(227,244,254,1));
+  min-height:100vh;
+}
+.header-seach{
+  width:100%;
+  height: 88rpx;
+  box-sizing: border-box;
+  background:rgba(255,255,255,1);
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid rgba(229,229,229,0.7);
+  position: relative;
+  z-index:100;
+}
+.header-seach .seach-item{
+  width:25%;
+  font-size:28rpx;
+  font-family:PingFang-SC-Medium;
+  font-weight:500;
+  color:rgba(51,51,51,1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right:2rpx solid rgb(229,229,229);
+}
+.seach-bsolute{
+  width:100%;
+  max-height:480rpx;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  position: absolute;
+  background: #fff;
+  top:88rpx;
+  z-index:100;
+}
+.seach-bsolute .bsolute-item{
+  width:100%;
+  height: 88rpx;
+  box-sizing: border-box;
+  padding-left: 30rpx;
+  line-height: 88rpx;
+  font-size:30rpx;
+  font-family:PingFang-SC-Medium;
+  font-weight:500;
+  color:rgba(51,51,51,1);
+  border-bottom:1px solid rgba(229,229,229,0.6);
+}
+.seach-bsolute .active{
+  color:rgba(0,162,255,1);
+}
+
+.header-seach .seach-item:last-child{
+  border-right:none;
+}
+.header-seach .seach-item .icon{
+  margin-left: 12rpx;
+}
+.contact{
+  display: flex;
+  justify-content: flex-end;
+  width:100%;
+  padding-right:23rpx;
+  margin-bottom:30rpx;
+  box-sizing: border-box;
+  font-size:24rpx;
+  font-family:PingFang-SC-Medium;
+  font-weight:500;
+  color:rgba(134,140,149,1);
+}
+.contact .text{
+  font-size:24rpx;
+  font-family:PingFang-SC-Medium;
+  font-weight:500;
+  color:rgba(0,162,255,1);
+}
+/* 遮罩 */
+.mask-page{
+  width:100%;
+  height:100vh;
+  position: fixed;
+  z-index:10;
+  top:0;
+  left:0;
+  background:rgba(0,0,0,0.6);
+}
+.content{
+  padding-bottom: 50rpx;
+}
+.content-item .before{
+  width:100%;
+  height:52rpx;
+  background:rgba(0,162,255,1);
+  border-radius:0px 0px 8px 8px;
+}
+@import "../../../../template/load.wxss"

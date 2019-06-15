@@ -1,0 +1,50 @@
+<skeleton selector="skeleton" loading="spin" bgcolor="#FFF" wx:if="{{showSkeleton}}"></skeleton>
+<view class="index-page" style="padding-top:{{headerH}}px;">
+  <view class="header-box" style="height:{{headerH}}px;padding-top:{{statusBarHeight}}px;">
+    <view class="header" style="height:{{titleBarHeight}}px;line-height:{{titleBarHeight}}px;">
+      <image wx:if="{{!operating}}" src="{{userInfo.avatarUrl}}" class="user-avatar" style="top:{{avatartop}}px;"></image>
+      <text wx:else class="text" catchtap='canceloper'>取消</text>
+      <text>淘知点读书</text>
+    </view>
+  </view>
+  <!-- content -->
+  <view class="content skeleton" style='height:{{contentH}}px'>
+    <view class="content-item skeleton-rect" wx:for="{{list}}" animation="{{animation}}" wx:key="key" style="{{(index+1)%3==0?'margin-right:0;':'margin-right:30rpx;'}}" catchlongtap='userPress' catchtap='{{index==0?"addbook":"infobook"}}' data-id="{{item.id}}"
+      data-subjectid="{{item.subjectId}}" data-index="{{index}}">
+      <block wx:if="{{index!=0}}">
+        <image class="check-icon" wx:if="{{operating}}" src="https://open.oss.taozhi.cn/audiobook/asset/index/delete.png" catchtap='editcheck' data-id="{{item.id}}">
+        </image>
+        <view class="before" wx:if="{{item.before}}">已下载</view>
+        <image bindload="imageLoad" class='coverImg' wx:if="{{item.cover}}" src="{{item.cover}}" mode='aspectFill'></image>
+      </block>
+      <block wx:else>
+        <image class="addBtn" src="https://open.oss.taozhi.cn/audiobook/asset/index/add.png"></image>
+      </block>
+    </view>
+  </view>
+  <!-- <view class="edittabber" wx:if="{{edittabber}}">
+      <view class="edittabber-item">
+         <image class="icon" src="https://open.oss.taozhi.cn/audiobook/asset/index/clear.png"></image>
+         <text>清空下载</text>
+      </view>
+      <view class="edittabber-item">
+          <image class="icon" src="https://open.oss.taozhi.cn/audiobook/asset/index/delt.png"></image>
+          <text>移除({{chenum}})</text>
+      </view>
+   </view> -->
+  <view class="mask" wx:if="{{showmodal}}">
+    <view class="box">
+      <view class="moudel">
+        <view class="thing">确认删除所选图书？</view>
+        <view class="box-btn">
+          <view class="operating" catchtap='cancelClick'>取消</view>
+          <view class="operating" catchtap='addClick'>确认</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- tips -->
+  <view class="tips" wx:if="{{tips}}">
+    <view class="tips-box">{{tipstext}}</view>
+  </view>
+</view>
